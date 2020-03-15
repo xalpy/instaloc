@@ -5,6 +5,7 @@
 from argparse import ArgumentParser
 from multiprocessing import Pool
 import urllib.parse
+from json import JSONDecodeError
 
 from requests import get as reqget
 from work import db_add
@@ -16,8 +17,8 @@ def get_req(url: str) -> dict:
     try:
         json = req.json()
         return json
-    except json.decoder.JSONDecodeError:
-        print(req.text)
+    except JSONDecodeError:
+        print(req)
     
 
 
